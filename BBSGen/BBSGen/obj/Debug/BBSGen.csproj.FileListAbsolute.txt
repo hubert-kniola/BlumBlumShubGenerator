@@ -1,0 +1,6 @@
+C:\Users\Dell\source\repos\BBSGen\BBSGen\obj\Debug\BBSGen.csprojAssemblyReference.cache
+C:\Users\Dell\source\repos\BBSGen\BBSGen\obj\Debug\BBSGen.csproj.CoreCompileInputs.cache
+C:\Users\Dell\source\repos\BBSGen\BBSGen\bin\Debug\BBSGen.exe
+C:\Users\Dell\source\repos\BBSGen\BBSGen\bin\Debug\BBSGen.pdb
+C:\Users\Dell\source\repos\BBSGen\BBSGen\obj\Debug\BBSGen.exe
+C:\Users\Dell\source\repos\BBSGen\BBSGen\obj\Debug\BBSGen.pdb
