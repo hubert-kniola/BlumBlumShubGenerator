@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -36,6 +37,10 @@ namespace BBSGen
                 {
                     Console.WriteLine("[Alert] Znak nie jest typu INT");
                     option = 3;
+                }
+                catch(IOException e)
+                {
+                    Console.WriteLine("[Alert]");
                 }
             } while (option != 0);
             Console.ReadKey();

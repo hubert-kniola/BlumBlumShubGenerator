@@ -10,6 +10,7 @@ namespace BBSGen
 {
     class Tests
     {
+        //ZLICZANIE LOGICZNYCH JEDYNEK
         public static long countBits(List<int> list)
         {
             var count = 0;
@@ -18,6 +19,8 @@ namespace BBSGen
                     count++;
             return count;
         }
+
+        //SINGLE BIT TEST
         public static void SBTest(List<int> list)
         {
             Tests test = new Tests();
@@ -33,6 +36,7 @@ namespace BBSGen
             }
         }
 
+        //LONG SERIES TEST
         public static void LSTest(List<int> list)
         {
             int count0 = 0, count1 = 1;
@@ -87,6 +91,7 @@ namespace BBSGen
                 Console.WriteLine("[Long Series Test] Zakonczono sukcesem!");
         }
 
+        //SERIES TEST
         public static void SeriesTest(List<int> list)
         {
             int count1 = 0;
@@ -152,6 +157,7 @@ namespace BBSGen
 
         }
 
+        //DZIELENIE LIST NA TABLICE O 4 ELEMENTACH
         public static List<int[]> batcherOfList(List<int> list)
         {
             var dividedList = new List<int[]>();
@@ -167,6 +173,23 @@ namespace BBSGen
             return dividedList;
         }
 
+        //KONWERTOWANIE LICZB BINARNYCH NA DZIESIETNE
+        public static List<int> convertHexToDec(List<int[]> list)
+        {
+            var decList = new List<int>();
+            var xdec = 0;
+            foreach (int[] element in list)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    xdec = element[3] * 1 + element[2] * 2 + element[1] * 4 + element[0] * 8;
+                }
+                decList.Add(xdec);
+            }
+            return decList;
+        }
+        
+        //PRZELICZANIE CIAGOW LICZB WEDLUG WZORU
         public static float calculatePoker(IOrderedEnumerable<KeyValuePair<int, int>> list)
         {
             float value = 0;
@@ -180,35 +203,20 @@ namespace BBSGen
             return value;
         }
 
-        public static List<int> convertHexToDec(List<int[]> list)
-        {
-            var decList = new List<int>();
-            var xdec = 0;
-
-            foreach (int[] element in list)
-            {
-                for (int i = 0; i < 4; i++)
-                {
-                    xdec = element[3] * 1 + element[2] * 2 + element[1] * 4 + element[0] * 8;
-                }
-                decList.Add(xdec);
-            }
-            return decList;
-        }
-
+        //POKER TEST
         public static void PokerTest(List<int> list)
         {
             int nSize = 4;
             Tests test = new Tests();
             var dividedList = Tests.batcherOfList(list);
-            /*foreach (int[] element in dividedList)
-            {
-                for (int i = 0; i < 4; i++) //WYSWIETLANIE KROKU
-                {
-                    Console.Write($"{element[i]}");
-                }
-                Console.WriteLine();
-            }*/
+            //foreach (int[] element in dividedList)
+            //{
+            //    for (int i = 0; i < 4; i++) //WYSWIETLANIE KROKU
+            //    {
+            //        Console.Write($"{element[i]}");
+            //    }
+            //    Console.WriteLine();
+            //}
             var decimalList = Tests.convertHexToDec(dividedList);
             //foreach (var element in decimalList)
             //    Console.Write($" {element} "); //WYSWIETLANIE KROKU
@@ -221,7 +229,7 @@ namespace BBSGen
 
             var result = Tests.calculatePoker(sortedFrequency);
             if (result > 2.16 && result < 46.17)
-                Console.WriteLine($"[Poker Test] Test zakonczono sukcesem! [2,16 < {result} < 46,17]");
+                Console.WriteLine($"[Poker Test] Zakonczono sukcesem! [2,16 < {result} < 46,17]");
             else
                 Console.WriteLine($"Nie spelniono wymagan testu! [ {result} ]");
         }

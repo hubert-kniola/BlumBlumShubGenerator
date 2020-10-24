@@ -13,6 +13,7 @@ namespace BBSGen
         public static readonly BigInteger q = 400003;
         public static readonly BigInteger N = p * q;
 
+        //TWORZENIE KOLEJNEJ LICZBY BITOWEJ
         public static BigInteger nextBit(BigInteger previous)
         {
             return (previous * previous) % N;
@@ -34,6 +35,7 @@ namespace BBSGen
                 return 0;
         }*/
 
+        //ZNAJDOWANIE NAJMLODSZEGO BITU
         public static int leastSB(BigInteger n)
         {
             if ((n & BigInteger.One) != BigInteger.Zero)
@@ -42,9 +44,10 @@ namespace BBSGen
                 return 0;
         }
  
+        //TWORZENIE BITOWEGO CIAGU LOSOWEGO
         public static void generatorBBS()
         {
-            BigInteger seed = findPrimeNumber(9000000000);
+            BigInteger seed = generateSeed(N);
             var sizeString = 20000;
             
             Console.WriteLine($"Dane:\nseed = {seed}\nsize = {sizeString}\np = {p}\nq = {q}\nN = {N}");
@@ -61,12 +64,25 @@ namespace BBSGen
             }
             Console.WriteLine();
 
-            Tests.SBTest(bbsList);
-            Tests.LSTest(bbsList);
-            Tests.SeriesTest(bbsList);
-            Tests.PokerTest(bbsList);
+            //TESTY
+            Tests.SBTest(bbsList); //Single Bit Test
+            Tests.LSTest(bbsList); //Long Series Test
+            Tests.SeriesTest(bbsList); //Series Test
+            Tests.PokerTest(bbsList); //Poker Test
         }
 
+        //GENEROWANIE LOSOWEGO SEEDA
+        public static BigInteger generateSeed(BigInteger N)
+        {
+            Random rnx = new Random();
+            BigInteger sd = 0;
+            do
+                sd = rnx.Next();
+            while (BigInteger.GreatestCommonDivisor(sd, N) != 1);
+            return sd;
+        }
+
+        //GENEROWANIE PIERWIASTKA
         public static BigInteger Sqrt(this BigInteger n)
         {
             if (n == 0) return 0;
@@ -80,21 +96,20 @@ namespace BBSGen
                     root += n / root;
                     root /= 2;
                 }
-
                 return root;
             }
-
             throw new ArithmeticException();
         }
 
+        //SPRAWDZANIE CZY LICZBA JEST PIERWIASTKIEM
         static Boolean isSqrt(BigInteger n, BigInteger root)
         {
             BigInteger lowerBound = root * root;
             BigInteger upperBound = (root + 1) * (root + 1);
-
             return (n >= lowerBound && n < upperBound);
         }
 
+        //SPRAWDZANIE CZY LICZBA JEST PIERWSZA
         public static bool isPrime(BigInteger n)
         {
             if (n <= 0) throw new IOException();
@@ -108,7 +123,8 @@ namespace BBSGen
             return true;
         }
 
-        public static BigInteger findPrimeNumber(BigInteger min)
+        //GENEROWANIE LICZBY PIERWSZEJ
+        public static BigInteger generatePrime(BigInteger min)
         {
             BigInteger primeNumber = 0;
             BigInteger temp;
